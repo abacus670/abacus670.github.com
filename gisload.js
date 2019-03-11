@@ -10,7 +10,7 @@ Done!
 
 <div id="google_map" style="width:800px;height:400px;"></div>
 
-<script type="text/javascript" src="http://www.google.com/jsapi?key=AIzaSyB_x3dBn-BAoFke6xhFtcg7jAjOuGsCED8"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi?key="></script>
 <script type="text/javascript">
 
   var LATITUDE_ELEMENT_ID = "course_latitude";
