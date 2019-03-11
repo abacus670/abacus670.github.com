@@ -24,33 +24,36 @@
     <script>
       var map;
       function initMap() {
-              var myLatlng = {lat: 37.406, lng: 126.971};
 
-              var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 4,
-                center: myLatlng
-              });
+          var mapDiv = document.getElementById('map-canvas');
+          var map = new google.maps.Map(mapDiv, {
+            center: new google.maps.LatLng(37.406, 126.971),
+            zoom: 13,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
 
-              var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map,
-                title: 'Click to zoom'
-              });
+          google.maps.event.addListener(map, 'bounds_changed', function() {
+              var lat1 = 37.41463623043073;
+              var lat2 = 37.46915383933881;
+              var lng1 = -122.1848153442383;
+              var lng2 = -122.09898465576174;
 
-              map.addListener('center_changed', function() {
-                // 3 seconds after the center of the map has changed, pan back to the
-                // marker.
-                window.setTimeout(function() {
-                  map.panTo(marker.getPosition());
-                }, 3000);
+              var rectangle = new google.maps.Polygon({
+                 paths : [
+                   new google.maps.LatLng(lat1, lng1),
+                   new google.maps.LatLng(lat2, lng1),
+                   new google.maps.LatLng(lat2, lng2),
+                   new google.maps.LatLng(lat1, lng2)
+                 ],
+                strokeOpacity: 0,
+                fillOpacity : 0,
+                map : map
               });
-
-              marker.addListener('click', function() {
-                alert("click now");
-                map.setZoom(8);
-                map.setCenter(marker.getPosition());
-              });
-            }
+              google.maps.event.addListener(rectangle, 'click', function(args) {
+                 console.log('latlng', args.latLng);
+            });
+          });
+      }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_x3dBn-BAoFke6xhFtcg7jAjOuGsCED8&callback=initMap"
     async defer></script>
