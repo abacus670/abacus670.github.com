@@ -33,7 +33,68 @@
           });
 
           google.maps.event.addListener(map, 'bounds_changed', function() {
-              var lat1 = 37.41463623043073;
+              var lat1 = 37.<!DOCTYPE html>
+              <html>
+                <head>
+                  <title>Simple Map</title>
+                  <meta name="viewport" content="initial-scale=1.0">
+                  <meta charset="utf-8">
+                  <style>
+                    /* Always set the map height explicitly to define the size of the div
+                     * element that contains the map. */
+                    #map {
+                      height: 100%;
+                    }
+                    /* Optional: Makes the sample page fill the window. */
+                    html, body {
+                      height: 100%;
+                      margin: 0;
+                      padding: 0;
+                    }
+                  </style>
+                </head>
+
+                <body>
+                  <div id="map"></div>
+                  <script>
+                    var map;
+                    function initMap() {
+
+                        var mapDiv = document.getElementById('map-canvas');
+                        var map = new google.maps.Map(mapDiv, {
+                          center: new google.maps.LatLng(37.406, 126.971),
+                          zoom: 13,
+                          mapTypeId: google.maps.MapTypeId.ROADMAP
+                        });
+
+                        google.maps.event.addListener(map, 'bounds_changed', function() {
+                            var lat1 = 37.256;
+                            var lat2 = 37.466;
+                            var lng1 = 126.471;
+                            var lng2 = 127.571;
+
+                            var rectangle = new google.maps.Polygon({
+                               paths : [
+                                 new google.maps.LatLng(lat1, lng1),
+                                 new google.maps.LatLng(lat2, lng1),
+                                 new google.maps.LatLng(lat2, lng2),
+                                 new google.maps.LatLng(lat1, lng2)
+                               ],
+                              strokeOpacity: 0,
+                              fillOpacity : 0,
+                              map : map
+                            });
+                            google.maps.event.addListener(rectangle, 'click', function(args) {
+                               console.log('latlng', args.latLng);
+                          });
+                        });
+                    }
+                  </script>
+                  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_x3dBn-BAoFke6xhFtcg7jAjOuGsCED8&callback=initMap"
+                  async defer></script>
+                </body>
+              </html>a
+;
               var lat2 = 37.46915383933881;
               var lng1 = -122.1848153442383;
               var lng2 = -122.09898465576174;
