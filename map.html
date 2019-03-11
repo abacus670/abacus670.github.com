@@ -6,7 +6,7 @@
 
   <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_x3dBn-BAoFke6xhFtcg7jAjOuGsCED8"></script>
-  
+
   <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
   <style type="text/css">
     #map {
@@ -48,6 +48,7 @@
     // Get current location and show it in HTML
     var location = lp.getMarkerPosition();
     onIdlePositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+console.log('The chosen location is,' + location.lat + ',' + location.lng);
   });
 </script>
 
