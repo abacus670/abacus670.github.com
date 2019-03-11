@@ -94,30 +94,4 @@
                   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_x3dBn-BAoFke6xhFtcg7jAjOuGsCED8&callback=initMap"
                   async defer></script>
                 </body>
-              </html>a
-;
-              var lat2 = 37.46915383933881;
-              var lng1 = -122.1848153442383;
-              var lng2 = -122.09898465576174;
-
-              var rectangle = new google.maps.Polygon({
-                 paths : [
-                   new google.maps.LatLng(lat1, lng1),
-                   new google.maps.LatLng(lat2, lng1),
-                   new google.maps.LatLng(lat2, lng2),
-                   new google.maps.LatLng(lat1, lng2)
-                 ],
-                strokeOpacity: 0,
-                fillOpacity : 0,
-                map : map
-              });
-              google.maps.event.addListener(rectangle, 'click', function(args) {
-                 console.log('latlng', args.latLng);
-            });
-          });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_x3dBn-BAoFke6xhFtcg7jAjOuGsCED8&callback=initMap"
-    async defer></script>
-  </body>
-</html>a
+              </html>
