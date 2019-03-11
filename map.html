@@ -1,58 +1,53 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Simple Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example</title>
+  <script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_x3dBn-BAoFke6xhFtcg7jAjOuGsCED8"></script>
+  <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+  <style type="text/css">
+    #map {
+      width: 100%;
+      height: 480px;
+    }
+  </style>
+</head>
 
-  <body>
-    <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-              var myLatlng = {lat: 37.406, lng: 126.971};
+<body>
+<div id="map"></div>
+<br>
+<button id="confirmPosition">Confirm Position</button>
+<br>
+<p>On idle position: <span id="onIdlePositionView"></span></p>
+<p>On click position: <span id="onClickPositionView"></span></p>
+<script>
+  // Get element references
+  var confirmBtn = document.getElementById('confirmPosition');
+  var onClickPositionView = document.getElementById('onClickPositionView');
+  var onIdlePositionView = document.getElementById('onIdlePositionView');
+  var map = document.getElementById('map');
+  // Initialize LocationPicker plugin
+  var lp = new locationPicker(map, {
+    setCurrentPosition: true, // You can omit this, defaults to true
+    lat: 37.406,
+    lng: 126.971
+  }, {
+    zoom: 15 // You can set any google map options here, zoom defaults to 15
+  });
+  // Listen to button onclick event
+  confirmBtn.onclick = function () {
+    // Get current location and show it in HTML
+    var location = lp.getMarkerPosition();
+    onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+  };
+  // Listen to map idle event, listening to idle event more accurate than listening to ondrag event
+  google.maps.event.addListener(lp.map, 'idle', function (event) {
+    // Get current location and show it in HTML
+    var location = lp.getMarkerPosition();
+    onIdlePositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+  });
+</script>
 
-              var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 4,
-                center: myLatlng
-              });
-
-              var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map,
-                title: 'Click to zoom'
-              });
-
-              map.addListener('center_changed', function() {
-                // 3 seconds after the center of the map has changed, pan back to the
-                // marker.
-                window.setTimeout(function() {
-                  map.panTo(marker.getPosition());
-                }, 3000);
-              });
-
-              marker.addListener('click', function() {
-                alert("click now");
-                map.setZoom(8);
-                map.setCenter(marker.getPosition());
-              });
-            }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_x3dBn-BAoFke6xhFtcg7jAjOuGsCED8&callback=initMap"
-    async defer></script>
-  </body>
-</html>a
+</body>
+</html>
