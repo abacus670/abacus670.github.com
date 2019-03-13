@@ -61,7 +61,11 @@ console.log('The chosen location is,' + location.lat + ',' + location.lng);
        ['Manly Beach', 38.235556, 128.36484, 2],
        ['Maroubra Beach', 38.236556, 128.36484, 1]
      ];
-
+     var map1 = new google.maps.Map(document.getElementById('map'), {
+           zoom: 12,
+           center: new google.maps.LatLng(38.231556, 128.36484),
+           mapTypeId: google.maps.MapTypeId.ROADMAP
+         });
      var markers = [], i;
 
      for (i = 0; i < locations.length; i++) {
@@ -69,7 +73,7 @@ console.log('The chosen location is,' + location.lat + ',' + location.lng);
 
        var marker = new google.maps.Marker({
            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-           setMap: map
+           map: map1
        });
 
 
