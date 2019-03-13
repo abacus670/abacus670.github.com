@@ -68,8 +68,8 @@ console.log('The chosen location is,' + location.lat + ',' + location.lng);
 
 
        var marker = new google.maps.Marker({
-           setMap: map,
-           position: new google.maps.LatLng(locations[i][1], locations[i][2])
+           position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+           setMap: map
        });
 
 
