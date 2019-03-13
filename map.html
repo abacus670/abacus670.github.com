@@ -37,6 +37,8 @@
   }, {
     zoom: 12 // You can set any google map options here, zoom defaults to 15
   });
+
+
   // Listen to button onclick event
   confirmBtn.onclick = function () {
     // Get current location and show it in HTML
@@ -50,6 +52,39 @@
     onIdlePositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
 console.log('The chosen location is,' + location.lat + ',' + location.lng);
   });
+
+
+  var locations = [
+       ['Bondi Beach', 38.232556, 128.36484, 4],
+       ['Coogee Beach', 38.233556, 128.36484, 5],
+       ['Cronulla Beach', 38.234556, 128.36484, 3],
+       ['Manly Beach', 38.235556, 128.36484, 2],
+       ['Maroubra Beach', 38.236556, 128.36484, 1]
+     ];
+
+     var map = new google.maps.Map(document.getElementById('map'), {
+       zoom: 10,
+       center: new google.maps.LatLng(-33.92, 151.25),
+       mapTypeId: google.maps.MapTypeId.ROADMAP
+     });
+
+     var infowindow = new google.maps.InfoWindow();
+
+     var marker, i;
+
+     for (i = 0; i < locations.length; i++) {
+       marker = new google.maps.Marker({
+         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+         map: map
+       });
+
+       google.maps.event.addListener(marker, 'click', (function(marker, i) {
+         return function() {
+           infowindow.setContent(locations[i][0]);
+           infowindow.open(map, marker);
+         }
+       })(marker, i));
+     }
 </script>
 
 </body>
