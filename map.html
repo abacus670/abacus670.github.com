@@ -78,7 +78,7 @@ console.log('The chosen location is,' + location.lat + ',' + location.lng);
 
 
      }
-     google.maps.event.addListener(map1, 'mousemove', function (event) {
+     google.maps.event.addListener(map1, 'click', function (event) {
                    displayCoordinates(event.latLng);
                });
      function displayCoordinates(pnt) {
