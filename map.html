@@ -65,15 +65,22 @@ console.log('The chosen location is,' + location.lat + ',' + location.lng);
      var markers = [], i;
 
      for (i = 0; i < locations.length; i++) {
-        var latLng = new google.maps.LatLng(locations[i][1], locations[i][2]);
+       size=15;
+           var img=new google.maps.MarkerImage('marker.png',
+               new google.maps.Size(size, size),
+               new google.maps.Point(0,0),
+               new google.maps.Point(size/2, size/2)
+          );
 
-        var marker = new google.maps.Marker({
-            position: latLng
-          });
-          markers.push(marker);
+       var marker = new google.maps.Marker({
+           map: map,
+           position: new google.maps.LatLng(Locations[i][1], Locations[i][2]),
+               icon: img
+       });
+
 
      }
-     var markerCluster = new MarkerClusterer(map, markers);
+     
 </script>
 
 </body>
