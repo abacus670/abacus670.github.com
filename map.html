@@ -65,7 +65,7 @@ console.log('The chosen location is,' + location.lat + ',' + location.lng);
      var markers = [], i;
 
      for (i = 0; i < locations.length; i++) {
-        var latLng: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        var latLng: new google.maps.LatLng(locations[i][1], locations[i][2]);
 
         var marker = new google.maps.Marker({
             position: latLng
