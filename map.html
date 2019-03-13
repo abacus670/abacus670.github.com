@@ -24,42 +24,14 @@
 <p>On idle position: <span id="onIdlePositionView"></span></p>
 <p>On click position: <span id="onClickPositionView"></span></p>
 <script>
-  // Get element references
-  var confirmBtn = document.getElementById('confirmPosition');
-  var onClickPositionView = document.getElementById('onClickPositionView');
-  var onIdlePositionView = document.getElementById('onIdlePositionView');
-  var map = document.getElementById('map');
-  // Initialize LocationPicker plugin
-  var lp = new locationPicker(map, {
-    setCurrentPosition: true, // You can omit this, defaults to true
-    lat: 38.231556,
-    lng: 128.36484
-  }, {
-    zoom: 12 // You can set any google map options here, zoom defaults to 15
-  });
-
-
-  // Listen to button onclick event
-  confirmBtn.onclick = function () {
-    // Get current location and show it in HTML
-    var location = lp.getMarkerPosition();
-    onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
-  };
-  // Listen to map idle event, listening to idle event more accurate than listening to ondrag event
-  google.maps.event.addListener(lp.map, 'idle', function (event) {
-    // Get current location and show it in HTML
-    var location = lp.getMarkerPosition();
-    onIdlePositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
-console.log('The chosen location is,' + location.lat + ',' + location.lng);
-  });
 
 
   var locations = [
-       ['Bondi Beach', 38.232556, 128.36484, 4],
-       ['Coogee Beach', 38.233556, 128.36484, 5],
-       ['Cronulla Beach', 38.234556, 128.36484, 3],
-       ['Manly Beach', 38.235556, 128.36484, 2],
-       ['Maroubra Beach', 38.236556, 128.36484, 1]
+       ['A01', 38.25174, 128.1929, 4],
+       ['B02', 38.25237, 128.2086, 5],
+       ['A05', 38.22402, 128.2096, 3],
+       ['A02', 38.14550, 128.2533, 2],
+       ['A03', 38.20933, 128.4959, 1]
      ];
      var map1 = new google.maps.Map(document.getElementById('map'), {
            zoom: 12,
@@ -72,6 +44,7 @@ console.log('The chosen location is,' + location.lat + ',' + location.lng);
 
 
        var marker = new google.maps.Marker({
+           title: locations[i][0],
            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
            map: map1
        });
