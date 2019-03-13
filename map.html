@@ -28,12 +28,7 @@
   var confirmBtn = document.getElementById('confirmPosition');
   var onClickPositionView = document.getElementById('onClickPositionView');
   var onIdlePositionView = document.getElementById('onIdlePositionView');
-  var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: new google.maps.LatLng(38.231556, 128.36484),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
-  //var map = document.getElementById('map');
+  var map = document.getElementById('map');
   // Initialize LocationPicker plugin
   var lp = new locationPicker(map, {
     setCurrentPosition: true, // You can omit this, defaults to true
@@ -66,7 +61,11 @@ console.log('The chosen location is,' + location.lat + ',' + location.lng);
        ['Manly Beach', 38.235556, 128.36484, 2],
        ['Maroubra Beach', 38.236556, 128.36484, 1]
      ];
-
+     var map1 = new google.maps.Map(document.getElementById('map'), {
+           zoom: 12,
+           center: new google.maps.LatLng(38.231556, 128.36484),
+           mapTypeId: google.maps.MapTypeId.ROADMAP
+         });
      var markers = [], i;
 
      for (i = 0; i < locations.length; i++) {
@@ -74,12 +73,22 @@ console.log('The chosen location is,' + location.lat + ',' + location.lng);
 
        var marker = new google.maps.Marker({
            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-           map: map
+           map: map1
        });
 
 
      }
+     google.maps.event.addListener(map, 'mousemove', function (event) {
+                   displayCoordinates(event.latLng);
+               });
+     function displayCoordinates(pnt) {
 
+               var lat = pnt.lat();
+               lat = lat.toFixed(4);
+               var lng = pnt.lng();
+               lng = lng.toFixed(4);
+               console.log("Latitude: " + lat + "  Longitude: " + lng);
+           }
 </script>
 
 </body>
